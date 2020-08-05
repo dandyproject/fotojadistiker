@@ -50,7 +50,7 @@ async function msgHandler (client, message) {
         const { id, pushname } = sender
         const { name } = chat
         const time = moment(t * 1000).format('DD/MM HH:mm:ss')
-        const commands = ['#menu','#help','Stiker', '#stiker', '#tiktok']
+        const commands = ['#menu','#help','Stiker', '#stiker', '#tiktok', 'stiker','#sticker']
         const cmds = commands.map(x => x + '\\b').join('|')
         const cmd = type === 'chat' ? body.match(new RegExp(cmds, 'gi')) : type === 'image' && caption ? caption.match(new RegExp(cmds, 'gi')) : ''
 
@@ -62,10 +62,12 @@ async function msgHandler (client, message) {
             switch (cmd[0]) {
                 case '#menu':
                 case '#help':
-                    client.sendText(from, 'Menu: \n1. Stiker / #stiker: kirim gambar dengan caption atau balas gambar yang sudah dikirim. \n2. Stiker / #stiker spasi url gambar (contoh: #stiker https://avatars2.githubusercontent.com/u/24309806) \n3. #tiktok spasi url (contoh: #tiktok https://www.tiktok.com/@yogaGanteng/video/685521... untuk download video tiktok ) \n4. Follow Instagram @dandisubhani_ untuk update terbarunya yaa sayang mwahh ')
+                    client.sendText(from, 'Mod by Dandi: \n1. Stiker,stiker / #stiker,#sticker : kirim gambar dengan caption atau balas gambar yang sudah dikirim. \n2. Stiker / #stiker spasi url gambar (contoh: #stiker https://avatars2.githubusercontent.com/u/24309806) \n3. #tiktok spasi url (contoh: #tiktok https://www.tiktok.com/@yogaGanteng/video/685521... untuk download video tiktok ) \n4. Follow Instagram @dandisubhani_ untuk update terbarunya yaa sayang mwahh ')
                     break
                 case 'Stiker':
+                case 'stiker':
                 case '#stiker':
+                case '#sticker':
                     if (isMedia) {
                         const mediaData = await decryptMedia(message)
                         const imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
@@ -83,7 +85,7 @@ async function msgHandler (client, message) {
                             client.sendText(from, 'Maaf, Url yang kamu kirim tidak valid')
                         }
                     } else {
-                        client.sendText(from, 'Tidak Ada Gambar,Silahkan Serahkan Hatimu Padaku:v')
+                        client.sendText(from, 'Kirim Gambarnya Goblog:v')
                     }
                     break
                 case '#tiktok':
